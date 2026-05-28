@@ -14,7 +14,7 @@ type Bin struct {
 }
 
 func main() {
-	fmt.Println("**CLI для работы с Json-файлами**")
+	fmt.Println("**CLI для работы с JSon-файлами**")
 	for {
 		BinList := []Bin{}
 		a, err := addNewBin(BinList)
