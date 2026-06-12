@@ -7,18 +7,18 @@ import (
 )
 
 type Bin struct {
-	id        string
-	private   bool
-	createdAt time.Time
-	name      string
+	Id        string    `json:"id"`
+	Private   bool      `json:"private"`
+	CreatedAt time.Time `json:"createdAt"`
+	Name      string    `json:"name"`
 }
 
 func AddNewBin(bin []Bin) ([]Bin, error) {
 	var array Bin
 	var isPrivate string
 	fmt.Println("Введите ID: ")
-	fmt.Scanln(&array.id)
-	if array.id == "" {
+	fmt.Scanln(&array.Id)
+	if array.Id == "" {
 		return nil, errors.New("Ошибка! Пустая строка")
 	}
 	fmt.Println("Сделать приватным? (y/n)")
@@ -27,17 +27,17 @@ func AddNewBin(bin []Bin) ([]Bin, error) {
 		return nil, errors.New("Ошибка! Пустая строка")
 	}
 	if isPrivate == "y" {
-		array.private = true
+		array.Private = true
 	}
 	if isPrivate == "n" {
-		array.private = false
+		array.Private = false
 	}
 	fmt.Println("Введите имя: ")
-	fmt.Scanln(&array.name)
-	if array.name == "" {
+	fmt.Scanln(&array.Name)
+	if array.Name == "" {
 		return nil, errors.New("Ошибка! Пустая строка")
 	}
-	array.createdAt = time.Now()
+	array.CreatedAt = time.Now()
 	bin = append(bin, array)
 	return bin, nil
 }
