@@ -3,6 +3,7 @@ package file
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func ReadFile(name string) ([]byte, error) {
@@ -26,4 +27,9 @@ func WriteFile(content []byte, name string) error {
 	fmt.Println("Запись успешна")
 	return nil
 
+}
+
+func CheckJson(name string) bool {
+	isJson := strings.HasSuffix(name, ".json")
+	return isJson
 }

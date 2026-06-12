@@ -10,7 +10,7 @@ import (
 
 type BinList struct {
 	Bins      []bins.Bin `json:"bins"`
-	UpdatedAt time.Time  `json:"upadtedat"`
+	UpdatedAt time.Time  `json:"upadtedAt"`
 }
 
 func (bin *BinList) ToBytes() ([]byte, error) {
@@ -38,11 +38,15 @@ func NewBinList() *BinList {
 }
 
 func (bin *BinList) AddBinToBinList(newbin *bins.Bin) {
-	bin.Bins = append(bin.Bins, acc)
+	bin.Bins = append(bin.Bins, *newbin)
 	bin.UpdatedAt = time.Now()
 	data, err := bin.ToBytes()
 	if err != nil {
 		fmt.Println("Не удалось преобразовать файл")
+		return
 	}
-	file.WriteFile(data, "data.json")
+	err = file.WriteFile(data, "data.json")
+	if err != nil {
+		fmt.Println(err)
+	}
 }

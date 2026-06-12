@@ -2,18 +2,19 @@ package main
 
 import (
 	"bin_3/bins"
+	"bin_3/storage"
 	"fmt"
 )
 
 func main() {
 	fmt.Println("**CLI для работы с JSon-файлами**")
-	var BinList []bins.Bin
+	newBinList := storage.NewBinList()
 	for {
-		a, err := bins.AddNewBin(BinList)
-		if a != nil {
-			fmt.Println(a)
-		} else {
+		a, err := bins.AddNewBin()
+		if err != nil {
 			fmt.Println(err)
+		} else {
+			newBinList.AddBinToBinList(a)
 		}
 		res := wantToRestart()
 		if res != true {

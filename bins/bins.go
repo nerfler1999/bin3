@@ -13,7 +13,7 @@ type Bin struct {
 	Name      string    `json:"name"`
 }
 
-func AddNewBin(bin []Bin) ([]Bin, error) {
+func AddNewBin() (*Bin, error) {
 	var array Bin
 	var isPrivate string
 	fmt.Println("Введите ID: ")
@@ -38,6 +38,5 @@ func AddNewBin(bin []Bin) ([]Bin, error) {
 		return nil, errors.New("Ошибка! Пустая строка")
 	}
 	array.CreatedAt = time.Now()
-	bin = append(bin, array)
-	return bin, nil
+	return &array, nil
 }
